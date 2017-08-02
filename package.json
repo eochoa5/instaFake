@@ -1,0 +1,20 @@
+{
+  "name": "instafake",
+  "version": "1.0.0",
+  "description": "instafake",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "author": "Edwin",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cloudinary": "^1.4.3",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.5"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
