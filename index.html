@@ -1,14 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
+
+<html ng-app="app">
+<head><base href="/">
 	<title>InstaFake</title>
-
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	
-
 </head>
 <body>
 
+<div style="float:right">
+	<a href="/feed">Go to feed</a><br>
+
+	<a href="/post">Post pic</a>
+
+</div>
+
+<div ng-view></div>
+
 
 </body>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="controllers/feed-controller.js"></script>
+<script type="text/javascript" src="controllers/post-controller.js"></script>
+<script type="text/javascript" src="js/ng-file-upload.js"></script>
 </html>

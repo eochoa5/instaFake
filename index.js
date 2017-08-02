@@ -5,10 +5,16 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cloudinary = require('cloudinary');
 
-app.get('/', function(req, res){
+
+app.use('/views', express.static(__dirname + '/views'));
+
+app.use(express.static(__dirname));
+
+app.get('/*', function(req, res){
 	res.sendFile(__dirname+'/index.html');
 
 });
+
 
 process.env.MONGO_CONNECT = "";
 
@@ -19,11 +25,12 @@ process.env.CLOUDINARY_URL="";
 var Pic = require('./datasets/pics.js');
 
 cloudinary.config({ 
-  cloud_name: 'dxfjgqyxu', 
+  cloud_name: '', 
   api_key: '', 
   api_secret: '' 
 });
 
+/*
 
 cloudinary.uploader.upload('./dev.png', function(result){
 
@@ -35,9 +42,7 @@ cloudinary.uploader.upload('./dev.png', function(result){
 
 });
 
-
-app.use(express.static(__dirname));
-
+*/
 
 
 http.listen(process.env.PORT || 9000, function(){
