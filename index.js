@@ -4,16 +4,32 @@ var http = require('http').Server(app);
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cloudinary = require('cloudinary');
+var multiparty = require('connect-multiparty');
+var multipartMiddleware = multiparty();
 
+//controllers
+var postController = require('./serverControllers/postController.js');
+var viewImagesController = require('./serverControllers/view-images-controller.js');
 
 app.use('/views', express.static(__dirname + '/views'));
 
 app.use(express.static(__dirname));
 
+app.use(bodyParser.json());
+app.use(multipartMiddleware);
+
+//get endpoints
+app.get('/getNewPics', viewImagesController.getPics);
+
 app.get('/*', function(req, res){
 	res.sendFile(__dirname+'/index.html');
 
 });
+
+//post endpoints
+
+app.post('/share', multipartMiddleware, postController.submitNewPicture);
+
 
 
 process.env.MONGO_CONNECT = "";
@@ -29,20 +45,6 @@ cloudinary.config({
   api_key: '', 
   api_secret: '' 
 });
-
-/*
-
-cloudinary.uploader.upload('./dev.png', function(result){
-
-	var picture = new Pic();
-	picture.name = "Pic of developer";
-	picture.url= result.secure_url;
-
-	picture.save();
-
-});
-
-*/
 
 
 http.listen(process.env.PORT || 9000, function(){
